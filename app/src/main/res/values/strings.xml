@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CefiroPhoneDisplay</string>
+
+    //button names
+    <string name="btn_On_Text">Fan On</string>
+    <string name="btn_Off_Text">Fan Off</string>
+    <string name="btn_Con_Text">Connect</string>
+    <string name="btn_Close_Text">Close</string>
+
+    <string name="Status_Label_Text">Status</string>
+</resources>
