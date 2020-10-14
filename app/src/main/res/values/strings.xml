@@ -7,5 +7,8 @@
     <string name="btn_Con_Text">Connect</string>
     <string name="btn_Close_Text">Close</string>
 
+    //text view names
     <string name="Status_Label_Text">Status</string>
+    <string name="Coolant_Label_Text">Coolant Temperature:</string>
+
 </resources>

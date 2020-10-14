@@ -8,6 +8,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView statusLabel;
+    private TextView CoolantTempDataLabel;
     private BluetoothConnection bluetoothCon;
 
     @Override
@@ -19,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
         Button offBtn = (Button)findViewById(R.id.OffBtn);
         Button conBtn = (Button)findViewById(R.id.ConnectBtn);
         Button closeBtn = (Button)findViewById(R.id.CloseBtn);
-        statusLabel = (TextView)findViewById(R.id.StatusLabel);
+
+        this.statusLabel = (TextView)findViewById(R.id.StatusLabel);
+        this.CoolantTempDataLabel = (TextView)findViewById(R.id.CoolantTempDataLabel);
 
         this.bluetoothCon = new BluetoothConnection(this);
 
@@ -34,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void setStatusLabel(String text) {
         this.statusLabel.setText(text);
+    }
+
+    public void setCoolantTempDataLabel(String temp){
+        this.CoolantTempDataLabel.setText(temp);
     }
 
     public BluetoothConnection getBluetoothCon() {
