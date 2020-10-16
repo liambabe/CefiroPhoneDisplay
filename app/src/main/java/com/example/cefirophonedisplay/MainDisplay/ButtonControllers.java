@@ -1,46 +1,9 @@
-package com.example.cefirophonedisplay;
+package com.example.cefirophonedisplay.MainDisplay;
 
 import android.view.View;
-
 import java.io.IOException;
 
 public class ButtonControllers {
-
-    public class OnButtonController implements View.OnClickListener {
-
-        private MainActivity mainPage;
-
-        public OnButtonController(MainActivity mainpage) {
-            this.mainPage = mainpage;
-        }
-
-        @Override
-        public void onClick(View view) {
-            try {
-                mainPage.getBluetoothCon().sendData('O');
-            } catch (IOException ex) {
-                mainPage.setStatusLabel("Error sending data");
-            }
-        }
-    }
-
-    public class OffButtonController implements View.OnClickListener {
-
-        private MainActivity mainPage;
-
-        public OffButtonController(MainActivity mainpage) {
-            this.mainPage = mainpage;
-        }
-
-        @Override
-        public void onClick(View view) {
-            try {
-                mainPage.getBluetoothCon().sendData('F');
-            } catch (IOException ex) {
-                mainPage.setStatusLabel("Error sending data");
-            }
-        }
-    }
 
     public class ConnectButtonController implements View.OnClickListener {
 
