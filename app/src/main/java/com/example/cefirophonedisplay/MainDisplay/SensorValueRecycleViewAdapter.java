@@ -7,18 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cefirophonedisplay.R;
 import com.example.cefirophonedisplay.Models.SensorValue;
+import com.example.cefirophonedisplay.R;
+import com.example.cefirophonedisplay.Models.SensorDisplayValue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SensorValueRecycleViewAdapter extends RecyclerView.Adapter<SensorValueRecycleViewAdapter.ViewHolder> {
 
-    private List<SensorValue> mData;
+    private List<SensorDisplayValue> mData;
     private LayoutInflater mInflater;
 
     // data is passed into the constructor
-    SensorValueRecycleViewAdapter(Context context, List<SensorValue> data) {
+    SensorValueRecycleViewAdapter(Context context, List<SensorDisplayValue> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,7 +35,7 @@ public class SensorValueRecycleViewAdapter extends RecyclerView.Adapter<SensorVa
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        SensorValue sensor = mData.get(position);
+        SensorDisplayValue sensor = mData.get(position);
         holder.displayText.setText(sensor.getDisplayString());
         holder.displayValue.setText(sensor.getValue());
     }
@@ -42,6 +44,19 @@ public class SensorValueRecycleViewAdapter extends RecyclerView.Adapter<SensorVa
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public void setValues(ArrayList<SensorValue> values) {
+
+        for (SensorValue value : values) {
+            for (SensorDisplayValue data : mData) {
+                if (data.equals(value)) {
+                    data.setValue(value.getValue());
+                    continue;
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     // stores and recycles views as they are scrolled off screen

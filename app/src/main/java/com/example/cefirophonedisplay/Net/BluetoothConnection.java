@@ -1,4 +1,4 @@
-package com.example.cefirophonedisplay.Data;
+package com.example.cefirophonedisplay.Net;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
 import com.example.cefirophonedisplay.MainDisplay.MainActivity;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,15 +22,11 @@ public class BluetoothConnection {
     private BluetoothSocket mmSocket;
     private BluetoothDevice mmDevice;
     private ConnectionThread connectionThread;
-    private Handler h;
-    private StringBuilder stringBuilder;
-    private final int RECIEVE_MESSAGE = 1;
     private final Handler mHandler;
 
     public BluetoothConnection(MainActivity mainactivity) {
 
         this.mainActivity = mainactivity;
-        this.stringBuilder = new StringBuilder();
 
         mHandler = new Handler()
         {
@@ -47,7 +41,7 @@ public class BluetoothConnection {
                     case 1:
                         String writeMessage = new String(writeBuf);
                         writeMessage = writeMessage.substring(begin, end);
-                        //mainActivity.setCoolantTempDataLabel(writeMessage);
+                        mainActivity.setSensorValues(writeMessage);
                         break;
                 }
             }

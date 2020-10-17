@@ -3,21 +3,15 @@ package com.example.cefirophonedisplay.Models;
 public class SensorValue {
 
     private final SensorIDs SensorID;
-    private final String DisplayString;
     private String Value;
 
-    public SensorValue(SensorIDs ID, String displaystring, String value) {
+    public SensorValue(SensorIDs ID, String value) {
         this.SensorID = ID;
-        this.DisplayString = displaystring;
         this.Value = value;
     }
 
     public String getSensorID() {
         return this.SensorID.toString();
-    }
-
-    public String getDisplayString() {
-        return this.DisplayString;
     }
 
     public String getValue() {
@@ -26,6 +20,14 @@ public class SensorValue {
 
     public void setValue(String value) {
         this.Value = value;
+    }
+
+    public boolean equals(SensorValue value) {
+        if (this.getSensorID().equals(value.getSensorID())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public enum SensorIDs {
