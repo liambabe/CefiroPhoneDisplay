@@ -11,8 +11,8 @@ public class SensorRawDataParser {
         String[] values = Data.split(",");
 
         sensorValueList.add(new SensorValue(SensorValue.SensorIDs.CoolantTemp, values[0]));
-        sensorValueList.add(new SensorValue(SensorValue.SensorIDs.AirIntakeTemp, values[1]));
-        sensorValueList.add(new SensorValue(SensorValue.SensorIDs.MapSensorPressure, values[2]));
+        sensorValueList.add(new SensorValue(SensorValue.SensorIDs.MapSensorPressure, values[1]));
+        sensorValueList.add(new SensorValue(SensorValue.SensorIDs.AirIntakeTemp, values[2]));
         sensorValueList.add(new SensorValue(SensorValue.SensorIDs.FanStatus, values[3]));
 
         return sensorValueList;
