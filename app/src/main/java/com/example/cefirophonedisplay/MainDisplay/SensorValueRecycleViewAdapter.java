@@ -1,6 +1,7 @@
 package com.example.cefirophonedisplay.MainDisplay;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,13 @@ public class SensorValueRecycleViewAdapter extends RecyclerView.Adapter<SensorVa
 
     private List<SensorDisplayValue> mData;
     private LayoutInflater mInflater;
+    private MainActivity mainPage;
 
     // data is passed into the constructor
     SensorValueRecycleViewAdapter(Context context, List<SensorDisplayValue> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mainPage = (MainActivity) context;
     }
 
     // inflates the row layout from xml when needed
@@ -38,6 +41,46 @@ public class SensorValueRecycleViewAdapter extends RecyclerView.Adapter<SensorVa
         SensorDisplayValue sensor = mData.get(position);
         holder.displayText.setText(sensor.getDisplayString());
         holder.displayValue.setText(sensor.getValue());
+
+        formatDataConditionals(holder, sensor);
+    }
+
+    /**
+     * Formats sensor values based on rules set in this method
+     * @param holder View holder that contains our recycle view text boxes
+     * @param sensor sensor value to determine format
+     */
+    public void formatDataConditionals(ViewHolder holder, SensorDisplayValue sensor) {
+
+        if (!this.mainPage.getColourFormatMode()) {
+            holder.displayValue.setTextColor(Color.parseColor("#000000"));
+            return;
+        }
+
+        if (sensor.getSensorID() == SensorValue.SensorIDs.CoolantTemp) {
+            int coolantTemperature = Integer.parseInt(sensor.getValue());
+
+            if (coolantTemperature >= 0 && coolantTemperature < 78) {
+                holder.displayValue.setTextColor(Color.parseColor("#0000FF"));
+            } else if (coolantTemperature >= 78 && coolantTemperature < 86) {
+                holder.displayValue.setTextColor(Color.parseColor("#000000"));
+            } else if (coolantTemperature >= 86) {
+                holder.displayValue.setTextColor(Color.parseColor("#FF0000"));
+            } else {
+                holder.displayValue.setTextColor(Color.parseColor("#000000"));
+            }
+        }
+        else if (sensor.getSensorID() == SensorValue.SensorIDs.MapSensorPressure) {
+            double mapPressure = Double.parseDouble(sensor.getValue());
+
+            if (mapPressure >= 1.6) {
+                holder.displayValue.setTextColor(Color.parseColor("#FF0000"));
+            } else {
+                holder.displayValue.setTextColor(Color.parseColor("#000000"));
+            }
+        }
+
+
     }
 
     // total number of rows

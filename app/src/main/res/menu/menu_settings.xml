@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/MenuSettingsButton"
+        android:title="@string/menu_btn_settings"/>
+    <item android:id="@+id/MenuSettingsColourFormatButton"
+        android:title="@string/menu_btn_colour_format"
+        android:checkable="true"/>
+    <item android:id="@+id/MenuSettingsDisplaysSettingButton"
+        android:title="@string/menu_btn_display_settings"/>
+    <item android:id="@+id/MenuCloseButton"
+        android:title="@string/menu_btn_close"/>
+</menu>

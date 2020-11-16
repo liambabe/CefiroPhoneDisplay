@@ -9,4 +9,10 @@
     //text view names
     <string name="Status_Label_Text">Status</string>
 
+    //menu names
+    <string name="menu_btn_settings">Settings</string>
+    <string name="menu_btn_colour_format">Colour Format</string>
+    <string name="menu_btn_display_settings">Display Settings</string>
+    <string name="menu_btn_close">Close</string>
+
 </resources>

@@ -10,8 +10,12 @@ public class SensorValue {
         this.Value = value;
     }
 
-    public String getSensorID() {
+    public String getSensorIDString() {
         return this.SensorID.toString();
+    }
+
+    public SensorIDs getSensorID() {
+        return this.SensorID;
     }
 
     public String getValue() {

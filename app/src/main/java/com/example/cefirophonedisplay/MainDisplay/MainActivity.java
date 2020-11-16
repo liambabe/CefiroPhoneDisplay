@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothConnection bluetoothCon;
     private SensorValueRecycleViewAdapter sensorValueViewAdapter;
     private SensorRawDataParser sensorValueParser;
+    private boolean isChecked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,45 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(sensorValueViewAdapter);
     }
 
+    /**
+     * adds in options menu
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    /**
+     * function to prepare and validate options menu
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem checkable = menu.findItem(R.id.MenuSettingsColourFormatButton);
+        checkable.setChecked(isChecked);
+        return true;
+    }
+
+    /**
+     * function to process input on our settings menu
+     * @param item setting menu option pressed
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.MenuSettingsColourFormatButton:
+                isChecked = !item.isChecked();
+                item.setChecked(isChecked);
+                return true;
+            case R.id.MenuSettingsDisplaysSettingButton:
+                //popup
+                return true;
+            default:
+                return false;
+        }
+    }
+
     public void setStatusLabel(String text) {
         this.statusLabel.setText(text);
     }
@@ -66,6 +109,15 @@ public class MainActivity extends AppCompatActivity {
 
     public BluetoothConnection getBluetoothCon() {
         return this.bluetoothCon;
+    }
+
+    /**
+     * getting for if the user has selected colour formatting
+     * within the options menu
+     * @return boolean, true if selected
+     */
+    public boolean getColourFormatMode() {
+        return isChecked;
     }
 
 }
